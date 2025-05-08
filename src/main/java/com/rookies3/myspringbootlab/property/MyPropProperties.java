@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Getter @Setter
 @Component
-@ConfigurationProperties("myprop")
+@ConfigurationProperties(prefix="myprop") // application.properties의 myprop으로 시작하는 변수를 꺼내와서 저장하겠다
 public class MyPropProperties {
     private String username;
     private int port;
