@@ -83,6 +83,7 @@ public class MyPropRunner implements ApplicationRunner {
         log.debug("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         //myprop.username=springboot
         //myprop.port=${random.int(1,100)}
+//        log.debug("env 출력: {}",env );
         log.debug("Active MyEnviroment Bean: {}", myEnv);
 
     }
