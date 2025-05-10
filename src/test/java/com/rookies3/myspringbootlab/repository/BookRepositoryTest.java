@@ -27,6 +27,29 @@ class BookRepositoryTest {
     BookRepository bookRepository;
 
     @Test
+    void testShowAllBooks(){
+        List<Book> listBooks = bookRepository.findAll();
+        assertThat(listBooks).isNotNull();
+        System.out.println("_____________________________________________________________");
+        System.out.print("|title\t\t\t");
+        System.out.print("|author\t");
+        System.out.print("|isbn\t\t\t");
+        System.out.print("|price\t");
+        System.out.println("|publishDate|");
+        System.out.println("-------------------------------------------------------------");
+        for(Book book : listBooks){
+            System.out.print("|"+book.getTitle()+"\t|");
+            System.out.print(book.getAuthor()+"\t|");
+            System.out.print(book.getIsbn()+"\t|");
+            System.out.print(book.getPrice()+"\t|");
+            System.out.println(book.getPublishDate()+"\t|");
+            System.out.println("-------------------------------------------------------------");
+        }
+
+
+    }
+
+    @Test
     @Rollback(value = false)
     @Disabled
     void testDeleteBook() {
