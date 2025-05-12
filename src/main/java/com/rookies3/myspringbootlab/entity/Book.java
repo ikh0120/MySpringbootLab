@@ -12,11 +12,10 @@ import java.time.LocalDate;
 
 
 
-//@Builder
+
 @Entity
 @Table(name = "books")
 @Getter @Setter
-@DynamicUpdate
 public class Book {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
