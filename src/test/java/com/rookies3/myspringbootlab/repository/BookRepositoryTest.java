@@ -48,7 +48,7 @@ class BookRepositoryTest {
         }
 
         /**
-         * 해당 testShowAllBooks() Console Output:
+         * 해당 testShowAllBooks() Console Output Result:
          * _____________________________________________________________
          * |title			|author	|isbn			|price	|publishDate|
          * -------------------------------------------------------------
