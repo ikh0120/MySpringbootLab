@@ -79,7 +79,9 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-<!--			<optional>true</optional>-->
+			<!--여기 주석 해제-->
+			<optional>true</optional>
+			<!--여기 주석 해제-->
 			<version>${lombok.version}</version>
 		</dependency>
 		<dependency>

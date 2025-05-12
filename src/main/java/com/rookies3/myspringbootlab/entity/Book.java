@@ -2,6 +2,7 @@ package com.rookies3.myspringbootlab.entity;
 
 import jakarta.persistence.*;
 
+//import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
@@ -10,12 +11,11 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 
-
-
-
+//@Builder
 @Entity
 @Table(name = "books")
 @Getter @Setter
+@DynamicUpdate
 public class Book {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
