@@ -72,7 +72,7 @@ public class BookController {
         return reb;
     }
 
-    //성공
+    //성공 //보통 Service에서 @Transactional을 써서 하나라도 틀리면 전체 롤백, 모두 성공해야지만 커밋되게 함
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book){
 //        book.setId(id);
@@ -99,7 +99,7 @@ public class BookController {
                 });
     }
 
-    //성공
+    //성공 //보통 Service에서 @Transactional을 써서 하나라도 틀리면 전체 롤백, 모두 성공해야지만 커밋되게 함
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id){
 
