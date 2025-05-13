@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/books")
+@RequestMapping("/api/books") //전체 prefix 주고 시작함
 @RequiredArgsConstructor
 public class BookController {
 
