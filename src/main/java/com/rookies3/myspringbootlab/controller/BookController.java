@@ -56,11 +56,11 @@ public class BookController {
 
     //ISBN으로 도서 조회
     /**강사님 코드*/
-    //@GetMapping("/isbn/{isbn}")
-    //public Book getBookByIsbn(@PathVariable String isbn) {
-    //    return bookRepository.findByIsbn(isbn)
-    //            .orElseThrow(() -> new BusinessException("Book Not Found",HttpStatus.NOT_FOUND));
-    //}
+//    @GetMapping("/isbn/{isbn}")
+//    public Book getBookByIsbn(@PathVariable String isbn) {
+//        return bookRepository.findByIsbn(isbn)
+//                .orElseThrow(() -> new BusinessException("Book Not Found",HttpStatus.NOT_FOUND));
+//    }
     /**기존 코드*/
     @GetMapping("/isbn/{isbn}")
     public ResponseEntity<Book> getBookByIsbn(@PathVariable String isbn){
@@ -104,7 +104,7 @@ public class BookController {
     //성공
     // 보통 Service에서 @Transactional을 써서 하나라도 틀리면 전체 롤백, 모두 성공해야지만 커밋되게 함
     //도서 업데이트
-    @PutMapping("/new/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Book> updateNewBook(@PathVariable Long id, @RequestBody Book book){
         return bookRepository.findById(id)
                 //optBook이라는 OptionalContainer에 Book 객체가 있다면
@@ -130,7 +130,7 @@ public class BookController {
     }
 
     /**강사님 코드*/
-    @PatchMapping("/update/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
