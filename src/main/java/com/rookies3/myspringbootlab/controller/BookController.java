@@ -161,20 +161,22 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id){
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type", "application/json");
-
-        ResponseEntity<Void> voidResponseEntity =
-                bookRepository.findById(id)
-                        .map(book -> {
-                            bookRepository.delete(book);
-                            return new ResponseEntity<Void >(headers, HttpStatus.NO_CONTENT);
-                        })
-                        .orElse(new ResponseEntity<Void>(headers, HttpStatus.NOT_FOUND));
-
-        return voidResponseEntity;
-
+        /**기존 코드*/
+        //ResponseEntity<Void> voidResponseEntity =
+        //        bookRepository.findById(id)
+        //                .map(book -> {
+        //                    bookRepository.delete(book);
+        //                    return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        //                })
+        //                .orElse(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
+        //return voidResponseEntity;
+        /**강사님 코드*/
+        if(!bookRepository.existsById(id)) { //매핑되는 Book이 존재하지 않으면
+            return ResponseEntity.notFound().build(); //상태코드 404 반환
+        }
+        //매핑되는 Book이 존재하면
+        bookRepository.deleteById(id);
+        return ResponseEntity.noContent().build(); //상태코드 204 반환
     }
 
 
