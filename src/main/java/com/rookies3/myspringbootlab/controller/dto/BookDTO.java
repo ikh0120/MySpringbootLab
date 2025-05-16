@@ -17,7 +17,7 @@ public class BookDTO {
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class BookCreateRequest {
+    public static class BookCreateRequest { //도서 생성 시 사용되는 DTO
         @NotBlank(message = "제목은 필수 입력 항목입니다.")
         private String title;
 
@@ -34,7 +34,7 @@ public class BookDTO {
 
 
         //BookCreateRequest => Entity
-        public Book toEntity() {
+        public Book toEntity() { //형변환
             Book book = new Book();
             book.setTitle(this.title);
             book.setAuthor(this.author);
@@ -49,7 +49,7 @@ public class BookDTO {
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class BookUpdateRequest {
+    public static class BookUpdateRequest { //도서 정보 업데이트 시 사용되는 DTO
         @Positive(message = "가격은 양수여야 합니다.")
         private Integer price;
 
@@ -63,7 +63,7 @@ public class BookDTO {
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class BookResponse {
+    public static class BookResponse { //클라이언트에게 반환되는 도서 정보 DTO
         private Long id;
         private String title;
         private String author;
