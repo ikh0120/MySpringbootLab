@@ -19,6 +19,7 @@ public class BookController{
 
     private final BookService bookService;
 
+    // 성공
     @GetMapping
     public ResponseEntity<List<BookDTO.BookResponse>> getAllBooks() {
         List<BookDTO.BookResponse> allBooks = bookService.getAllBooks();
@@ -37,6 +38,7 @@ public class BookController{
 //                .toList();
 //    }
 
+    //성공
     @GetMapping("/id/{id}")
     public ResponseEntity<BookDTO.BookResponse> getBookById(@PathVariable Long id){
         return new ResponseEntity<>(
@@ -47,6 +49,7 @@ public class BookController{
 
 
 
+    //성공
     @GetMapping("/isbn/{isbn}")
     public ResponseEntity<BookDTO.BookResponse> getBookByIsbn(@PathVariable String isbn) {
         return new ResponseEntity<>(
@@ -57,7 +60,7 @@ public class BookController{
 
 
 
-
+    //성공
     @GetMapping("/author/{author}")
     public ResponseEntity<List<BookDTO.BookResponse>> getBookByAuthor(@PathVariable String author) {
         return new ResponseEntity<>(
@@ -67,6 +70,7 @@ public class BookController{
     }
 
 
+    //성공
     @PostMapping
     public ResponseEntity<BookDTO.BookResponse> createBook(
             @Valid @RequestBody BookDTO.BookCreateRequest request) {
@@ -77,6 +81,7 @@ public class BookController{
     }
 
 
+    //성공
     @PatchMapping("/{id}")
     public ResponseEntity<BookDTO.BookResponse> updateBook(
             @PathVariable Long id, @Valid @RequestBody BookDTO.BookUpdateRequest request) {
@@ -86,7 +91,7 @@ public class BookController{
         );
     }
 
-
+    //성공
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
