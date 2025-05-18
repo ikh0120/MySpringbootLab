@@ -1,10 +1,8 @@
 package com.rookies3.myspringbootlab.controller;
 
 import com.rookies3.myspringbootlab.controller.dto.BookDTO;
-import com.rookies3.myspringbootlab.exception.advice.DefaultExceptionAdvice;
 import com.rookies3.myspringbootlab.service.BookService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +21,8 @@ public class BookController{
     @GetMapping
     public ResponseEntity<List<BookDTO.BookResponse>> getAllBooks() {
         List<BookDTO.BookResponse> allBooks = bookService.getAllBooks();
-        return new ResponseEntity<>(
-                allBooks,
-                HttpStatus.OK
-        );
+//        return new ResponseEntity<>(allBooks, HttpStatus.OK);
+        return ResponseEntity.ok(allBooks);
     }
 
 //    @GetMapping
@@ -42,7 +38,7 @@ public class BookController{
     @GetMapping("/id/{id}")
     public ResponseEntity<BookDTO.BookResponse> getBookById(@PathVariable Long id){
         return new ResponseEntity<>(
-                bookService.getBookById(id),
+                bookService.findBookById(id),
                 HttpStatus.OK
         );
     }
