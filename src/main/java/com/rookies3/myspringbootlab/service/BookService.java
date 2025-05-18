@@ -46,7 +46,7 @@ public class BookService {
 
     public BookDTO.BookResponse getBookByIsbn(String isbn) {
         Book result = bookRepository.findByIsbn(isbn)
-                .orElseThrow(() -> new BusinessException("Book Not Found with ISBN: "
+                .orElseThrow(() -> new BusinessException("Book Not Found with ISBN: " 
                         + isbn, HttpStatus.NOT_FOUND));
         return BookDTO.BookResponse.from(result);
     }
@@ -80,13 +80,16 @@ public class BookService {
     public BookDTO.BookResponse updateBook(Long id, BookDTO.BookUpdateRequest request) {
         BookDTO.BookResponse book = getBookById(id);
 
-        book.setPrice(request.getPrice());
+        if(book.getPrice() != null){ book.setPrice(request.getPrice()); }
 
         return book;
     }
 
     @Transactional
     public void deleteBook(Long id) {
+        if(!bookRepository.existsById(id)){
+            throw new BusinessException("Book Not Found with ID: " + id, HttpStatus.NOT_FOUND);
+        }
         bookRepository.deleteById(id);
     }
 
