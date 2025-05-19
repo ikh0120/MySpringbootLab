@@ -5,8 +5,8 @@ import lombok.*;
 
 @Entity
 @Table(name="book_details")
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor //기본 생성자 자동 생성: public BookDetail() { }
+@AllArgsConstructor //모든 필드를 매개변수로 받는 생성자 자동 생성: public BookDetail(...) {...}
 @Builder
 @Getter @Setter
 public class BookDetail {

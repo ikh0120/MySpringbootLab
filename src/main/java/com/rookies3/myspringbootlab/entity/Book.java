@@ -1,19 +1,17 @@
 package com.rookies3.myspringbootlab.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name="books")
-@Data
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter @Setter
 public class Book {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
