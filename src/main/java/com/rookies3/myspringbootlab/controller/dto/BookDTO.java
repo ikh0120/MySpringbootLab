@@ -55,8 +55,8 @@ public class BookDTO {
     }
 
     @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
+    @NoArgsConstructor //기본생성자 자동 생성
+    @AllArgsConstructor //모든 필드를 매개변수로 받는 생성자 자동 생성
     @Builder
     public static class Response {
         private Long id;
@@ -67,8 +67,10 @@ public class BookDTO {
         private LocalDate publishDate;
         private BookDetailResponse detail;
 
+        //Book => BookDTO.Response
         public static Response fromEntity(Book book) {
-            BookDetailResponse detailResponse = book.getBookDetail() != null
+            BookDetailResponse detailResponse = book.getBookDetail() != null //book.getBookDetail()이 null이 아니라면
+                    //BookDetailResponse.builder()...build()로 Builder 객체를 만든 뒤 다시 BookDetailResponse로 반환하겠다
                     ? BookDetailResponse.builder()
                         .id(book.getBookDetail().getId())
                         .description(book.getBookDetail().getDescription())
@@ -78,6 +80,7 @@ public class BookDTO {
                         .coverImageUrl(book.getBookDetail().getCoverImageUrl())
                         .edition(book.getBookDetail().getEdition())
                         .build()
+                    //book.getBookDetail()이 null이라면 null을 반환하겠다
                     : null;
             
             return Response.builder()
@@ -93,8 +96,8 @@ public class BookDTO {
     }
     
     @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
+    @NoArgsConstructor //기본 생성자 생성
+    @AllArgsConstructor //모든 매개변수 받는 생성자 생성
     @Builder
     public static class BookDetailResponse {
         private Long id;
