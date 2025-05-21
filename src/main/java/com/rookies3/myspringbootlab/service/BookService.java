@@ -31,6 +31,7 @@ public class BookService {
 
     public BookDTO.Response getBookById(Long id){
         return bookRepository.findById(id)
+//                .map(book -> BookDTO.Response.fromEntity(book))
                 .map(BookDTO.Response::fromEntity)
                 .orElseThrow(() -> new BusinessException("Book Not Found", HttpStatus.NOT_FOUND));
     }
