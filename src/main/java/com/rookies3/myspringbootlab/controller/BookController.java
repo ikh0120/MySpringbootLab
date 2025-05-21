@@ -3,6 +3,7 @@ package com.rookies3.myspringbootlab.controller;
 
 import com.rookies3.myspringbootlab.controller.dto.BookDTO;
 import com.rookies3.myspringbootlab.service.BookService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,14 +58,15 @@ public class BookController{
 
     //POST - 책 생성 //성공
     @PostMapping
-    public ResponseEntity<BookDTO.Response> createBook(@RequestBody BookDTO.Request request){
+    public ResponseEntity<BookDTO.Response> createBook(@Valid @RequestBody BookDTO.Request request){
         BookDTO.Response book = bookService.createBook(request);
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
     //PUT - /{id} - 책 수정 //성공
     @PutMapping("/{id}")
-    public ResponseEntity<BookDTO.Response> updateBook(@PathVariable Long id, @RequestBody BookDTO.Request request) {
+    public ResponseEntity<BookDTO.Response> updateBook(@PathVariable Long id,
+                                                       @Valid @RequestBody BookDTO.Request request) {
         BookDTO.Response response = bookService.updateBook(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
