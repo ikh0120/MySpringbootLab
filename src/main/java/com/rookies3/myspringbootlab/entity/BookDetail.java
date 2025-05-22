@@ -2,6 +2,7 @@ package com.rookies3.myspringbootlab.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Table(name="book_details")
@@ -9,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor //모든 필드를 매개변수로 받는 생성자 자동 생성: public BookDetail(...) {...}
 @Builder
 @Getter @Setter
+@DynamicUpdate
 public class BookDetail {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -196,7 +196,6 @@ public class BookService {
     public void deleteBook(Long id) {
 //        bookRepository.findById(id).orElseThrow(() ->
 //                new BusinessException("Book Not Found Please Change By Id!", HttpStatus.NOT_FOUND));
-
         if(!bookRepository.existsById(id)){
             throw new BusinessException(ErrorCode.RESOURCE_NOT_FOUND, "Book", "ID", id);
         }

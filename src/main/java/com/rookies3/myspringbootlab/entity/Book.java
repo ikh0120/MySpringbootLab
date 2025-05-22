@@ -2,6 +2,7 @@ package com.rookies3.myspringbootlab.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Getter @Setter
+@DynamicUpdate
 public class Book {
 
     //PK(Primary Key)
@@ -27,7 +29,7 @@ public class Book {
 
     @Column(unique = true, nullable = false)
     private String isbn;
-    
+
     private Integer price;
 
     private LocalDate publishDate;

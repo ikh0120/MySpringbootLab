@@ -43,7 +43,7 @@ public class BookController{
     }
 
     //GET - /search/author?author={author} - 저자로 책 검색 //성공
-    @GetMapping("/search/author") // 뒤에 @RequestParam의 변수명과 값이 ?로 이어붙인 뒤 들어감
+    @GetMapping("/search/author") // 뒤에 @RequestParam의 변수명과 값이 ?author={author}로 이어붙인 뒤 들어감
     public ResponseEntity<List<BookDTO.Response>> getBooksByAuthor(@RequestParam String author){
         List<BookDTO.Response> bookListByAuthor = bookService.getBooksByAuthor(author);
 
@@ -67,8 +67,8 @@ public class BookController{
     @PutMapping("/{id}")
     public ResponseEntity<BookDTO.Response> updateBook(@PathVariable Long id,
                                                        @Valid @RequestBody BookDTO.Request request) {
-        BookDTO.Response response = bookService.updateBook(id, request);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        BookDTO.Response updateBook = bookService.updateBook(id, request);
+        return new ResponseEntity<>(updateBook, HttpStatus.OK);
     }
 
     //DELETE - /{id} - 책 삭제 //성공
@@ -77,7 +77,8 @@ public class BookController{
         bookService.deleteBook(id);
         System.out.println("Delete Book with id: " + id);
         //return new ResponseEntity<>(null, HttpStatus.OK);
-        return ResponseEntity.ok().build();
+        //return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
 
