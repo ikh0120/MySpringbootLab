@@ -13,10 +13,11 @@ import java.util.Optional;
 public interface BookRepository extends JpaRepository<Book, Long> {
     Optional<Book> findByIsbn(String isbn);
 
-    //대소문자 구분하지 않고 검색하기
+    //Containing => like '% param %'   //IgnoreCase => 대소문자 구별 안함
     List<Book> findByAuthorContainingIgnoreCase(String author);
     List<Book> findByTitleContainingIgnoreCase(String title);
 
+    // book.id를 넣어 한 번의 쿼리로 Book과 BookDetail(인스턴스명: bookDetail)을 함께 조회
     @Query("SELECT b FROM Book b JOIN FETCH b.bookDetail WHERE b.id = :id")
     Optional<Book> findByIdWithBookDetail(@Param("id") Long id);
 

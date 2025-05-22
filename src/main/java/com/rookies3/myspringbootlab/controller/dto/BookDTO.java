@@ -27,7 +27,7 @@ public class BookDTO {
         private String author;
 
         @NotBlank(message = "ISBN is required")
-        @Pattern(regexp = "^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$",
+        @Pattern(regexp = "^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$", //정규표현식 사용
                 message = "ISBN must be valid (10 or 13 digits, with or without hyphens)")
         private String isbn;
 
@@ -37,7 +37,7 @@ public class BookDTO {
         @Past(message = "Publish date must be in the past")
         private LocalDate publishDate;
         
-        @Valid
+        @Valid //null값이 들어오면 안된다
         private BookDetailDTO detailRequest;
     }
     
