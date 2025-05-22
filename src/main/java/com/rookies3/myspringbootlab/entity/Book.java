@@ -13,6 +13,8 @@ import java.time.LocalDate;
 @Builder
 @Getter @Setter
 public class Book {
+
+    //PK(Primary Key)
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
     private Long id;
@@ -29,9 +31,10 @@ public class Book {
     @Column(nullable = false)
     private Integer price;
 
-    @Column(nullable = false)
     private LocalDate publishDate;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "book",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private BookDetail bookDetail;
 }
