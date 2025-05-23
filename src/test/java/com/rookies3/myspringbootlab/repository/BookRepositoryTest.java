@@ -5,6 +5,9 @@ import com.rookies3.myspringbootlab.entity.BookDetail;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -31,7 +34,7 @@ public class BookRepositoryTest {
                 .price(45)
                 .publishDate(LocalDate.of(2008, 8, 1))
                 .build();
-        
+
         BookDetail bookDetail = BookDetail.builder()
                 .description("A handbook of agile software craftsmanship")
                 .language("English")
@@ -41,7 +44,7 @@ public class BookRepositoryTest {
                 .edition("1st")
                 .book(book)
                 .build();
-        
+
         book.setBookDetail(bookDetail);
 
         // When
@@ -67,7 +70,7 @@ public class BookRepositoryTest {
                 .price(45)
                 .publishDate(LocalDate.of(2008, 8, 1))
                 .build();
-        
+
         BookDetail bookDetail = BookDetail.builder()
                 .description("A handbook of agile software craftsmanship")
                 .language("English")
@@ -77,7 +80,7 @@ public class BookRepositoryTest {
                 .edition("1st")
                 .book(book)
                 .build();
-        
+
         book.setBookDetail(bookDetail);
         bookRepository.save(book);
 
@@ -99,7 +102,7 @@ public class BookRepositoryTest {
                 .price(45)
                 .publishDate(LocalDate.of(2008, 8, 1))
                 .build();
-        
+
         BookDetail bookDetail = BookDetail.builder()
                 .description("A handbook of agile software craftsmanship")
                 .language("English")
@@ -109,7 +112,7 @@ public class BookRepositoryTest {
                 .edition("1st")
                 .book(book)
                 .build();
-        
+
         book.setBookDetail(bookDetail);
         Book savedBook = bookRepository.save(book);
 
@@ -130,19 +133,19 @@ public class BookRepositoryTest {
                 .author("Robert C. Martin")
                 .isbn("9780132350884")
                 .build();
-        
+
         Book book2 = Book.builder()
                 .title("Clean Architecture")
                 .author("Robert C. Martin")
                 .isbn("9780134494166")
                 .build();
-        
+
         Book book3 = Book.builder()
                 .title("Effective Java")
                 .author("Joshua Bloch")
                 .isbn("9780134685991")
                 .build();
-        
+
         bookRepository.saveAll(List.of(book1, book2, book3));
 
         // When
@@ -153,7 +156,7 @@ public class BookRepositoryTest {
         assertThat(martinBooks).extracting(Book::getTitle)
                 .containsExactlyInAnyOrder("Clean Code", "Clean Architecture");
     }
-    
+
     @Test
     public void findBookDetailByBookId() {
         // Given
@@ -164,7 +167,7 @@ public class BookRepositoryTest {
                 .price(45)
                 .publishDate(LocalDate.of(2008, 8, 1))
                 .build();
-        
+
         BookDetail bookDetail = BookDetail.builder()
                 .description("A handbook of agile software craftsmanship")
                 .language("English")
@@ -174,7 +177,7 @@ public class BookRepositoryTest {
                 .edition("1st")
                 .book(book)
                 .build();
-        
+
         book.setBookDetail(bookDetail);
         Book savedBook = bookRepository.save(book);
 
