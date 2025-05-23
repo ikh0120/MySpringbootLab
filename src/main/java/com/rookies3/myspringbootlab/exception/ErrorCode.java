@@ -1,4 +1,3 @@
-//ErrorCode enum 상수정의
 package com.rookies3.myspringbootlab.exception;
 
 import lombok.Getter;
@@ -26,7 +25,6 @@ public enum ErrorCode {
     private final String messageTemplate;
     private final HttpStatus httpStatus;
 
-    // ... 가변적인 아규먼트(Variable Arguments: 개수가 정해지지 않은 것)
     public String formatMessage(Object... args) {
         return String.format(messageTemplate, args);
     }

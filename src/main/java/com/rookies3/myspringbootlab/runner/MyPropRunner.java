@@ -11,80 +11,52 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import javax.swing.*;
-//myprop.username=springboot
-//myprop.port=${random.int(1,100)}
-
 @Component
 public class MyPropRunner implements ApplicationRunner {
-
-    //1-4)
     @Value("${myprop.username}")
-    private String name;
+    private String username;
+
     @Value("${myprop.port}")
     private int port;
 
     @Autowired
-    private MyPropProperties prop;
+    private Environment environment;
 
     @Autowired
-    private Environment env;
+    private MyPropProperties properties;
 
     @Autowired
-    private MyEnvironment myEnv;
+    private MyEnvironment myEnvironment;
 
-    private Logger log = LoggerFactory.getLogger(MyPropRunner.class);
+    private Logger logger = LoggerFactory.getLogger(MyPropRunner.class);
 
     @Override
-    public void run(ApplicationArguments args) throws Exception{
-//        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-//
-//        System.out.println("myprop.username: "+ name );
-//        System.out.println("myprop.port: "+port);
-//
-//        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-//
-//        System.out.println("getUsername(): " + prop.getUsername());
-//        System.out.println("getPort(): " + prop.getPort());
-//
-//        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-//
-//        //myprop.username=springboot
-//        //myprop.port=${random.int(1,100)}
-//        System.out.println("Environment로 환경변수 가져오기: "+env.getProperty("myprop.username"));
-//        System.out.println("Environment로 환경변수 가져오기: "+env.getProperty("myprop.port"));
-//
-//
-//        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-//        //myprop.username=springboot
-//        //myprop.port=${random.int(1,100)}
-//        System.out.println("Active MyEnviroment Bean: " + myEnv);
+    public void run(ApplicationArguments args) throws Exception {
+        System.out.println("Logger 구현체 => " + logger.getClass().getName());
 
-        System.out.println("====================================================================================================================================================================================");
+        logger.debug("${myprop.username} = {}", username);
+        logger.debug("${myprop.port} = {}", port);
+        logger.debug("${myprop.username} = {}", environment.getProperty("myprop.username"));
 
-        // logger.debug, logger.info로 바꾸기
-        log.info("logger.debug, logger.info로 변경하기");
-        log.info("myprop.username: {}", name );
-        log.info("myprop.port: {}",port);
+        logger.info("MyBootProperties getUsername() = {}", properties.getUsername());
+        logger.info("MyBootProperties getPort() = {}", properties.getPort());
+        logger.info("설정된 Port 번호 = {}", environment.getProperty("local.server.port") );
 
-        log.info("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        logger.info("현재 활성화된 MyEnvironment Bean = {}", myEnvironment);
 
-        log.info("getUsername(): {}", prop.getUsername());
-        log.info("getPort(): {}", prop.getPort());
+        // foo 라는 VM 아규먼트 있는지 확인
+        logger.debug("VM 아규먼트 foo : {}", args.containsOption("foo"));
+        // bar 라는 Program 아규먼트 있는지 확인
+        logger.debug("Program 아규먼트 bar : {}", args.containsOption("bar"));
 
-        log.debug("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        /*
+            Iterable forEach(Consumer)
+            Consumer 는 함수형 인터페이스 void accept(T t)
+            Consumer 의 추상메서드를 오버라이딩 하는 구문을 람다식으로 작성
+         */
+        // Program 아규먼트 목록 출력
+        args.getOptionNames()  //Set<String>
+                .forEach(name -> System.out.println(name));
 
-        //myprop.username=springboot
-        //myprop.port=${random.int(1,100)}
-        log.debug("Environment로 환경변수 가져오기: {}", env.getProperty("myprop.username"));
-        log.debug("Environment로 환경변수 가져오기: {}", env.getProperty("myprop.port"));
-
-
-        log.debug("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        //myprop.username=springboot
-        //myprop.port=${random.int(1,100)}
-//        log.debug("env 출력: {}",env );
-        log.debug("Active MyEnviroment Bean: {}", myEnv);
-
-    }
-}
+    }//run
+}//class

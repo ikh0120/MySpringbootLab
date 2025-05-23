@@ -7,17 +7,16 @@ import org.hibernate.annotations.DynamicUpdate;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="books")
-//@Data
+@Table(name = "books")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Getter @Setter
-@DynamicUpdate
+@Getter
+@Setter
 public class Book {
 
-    //PK(Primary Key)
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
     private Long id;
 

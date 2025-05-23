@@ -2,18 +2,18 @@ package com.rookies3.myspringbootlab.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name="book_details")
-@NoArgsConstructor //기본 생성자 자동 생성: public BookDetail() { }
-@AllArgsConstructor //모든 필드를 매개변수로 받는 생성자 자동 생성: public BookDetail(...) {...}
+@Table(name = "book_details")
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@Getter @Setter
-@DynamicUpdate
+@Getter
+@Setter
 public class BookDetail {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_detail_id")
     private Long id;
 
@@ -35,7 +35,6 @@ public class BookDetail {
     @Column(name = "edition")
     private String edition;
 
-    //FK(Foreign Key)
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id", unique = true)
     private Book book;

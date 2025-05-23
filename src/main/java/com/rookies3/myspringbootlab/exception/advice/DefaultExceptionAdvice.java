@@ -71,7 +71,7 @@ public class DefaultExceptionAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationErrorResponse> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
-        //slf4j를 사용해서 error 로그와 exception 정보를 뿌려줌
+
         log.error(ex.getMessage(), ex);
 
         Map<String, String> errors = new HashMap<>();
